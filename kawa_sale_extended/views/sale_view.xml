@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!--sale.order : inherit form view-->
+    <record id="sale_order_view_form_kawa_sale" model="ir.ui.view">
+        <field name="name">sale.order.form.kawa.sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//group[@name='partner_details']" position="inside">
+                <field name="partner_attention"/>
+            </xpath>
+            <xpath expr="//field[@name='sale_order_template_id']" position="after">
+                <field name="history_order_date" string="History Order Date"/>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="lead_time" string="Lead time"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+</odoo>

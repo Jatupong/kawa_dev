@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--hr.contract : inherit form view-->
+        <record id="hr_contract_view_form_itaas_contract" model="ir.ui.view">
+            <field name="name">hr.contract.form.itaas.contract</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form" />
+            <field name="arch" type="xml">
+
+                <xpath expr='//notebook/page[2]' position="after">
+                    <page name="employee_tax_deduction" string="Employee Tax Deduction" groups="hr.group_hr_manager">
+                        <field name="hr_tax_deduction_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="hr_contract_id" invisible="True"/>
+                                <field name="tax_deduction_id" options="{'no_create': True, 'no_open':True}"/>
+                                <field name="person"/>
+                                <field name="rate_amount" string="Max Rax/Person" readonly="1"/>
+                                <field name="amount" sum="Total Amount"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Personal Tax">
+                        <group>
+                            <field name="total_revenue_summary_net"/>
+                            <field name="total_revenue_summary_for_tax"/>
+                            <field name="total_revenue_summary_for_tax_special"/>
+                            <field name="total_tax_deduction"/>
+                            <field name="total_tax_paid"/>
+                        </group>
+                    </page>
+                    <page name="payroll_yearly_record" string="Payroll Record" groups="hr.group_hr_manager">
+                        <field name="payroll_year_record_ids">
+                            <tree>
+                                <field name="year"/>
+                                <field name="total_revenue_summary_net"/>
+                                <field name="total_revenue_summary_for_tax"/>
+                                <field name="total_revenue_summary_for_tax_special"/>
+                                <field name="total_tax_deduction"/>
+                                <field name="total_tax_paid"/>
+                                <field name="sso_paid_total"/>
+                                <field name="sso_company_paid_total"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="model_hr_contract_action_reset_salary_start" model="ir.actions.server">
+            <field name="name">ล้างสถิติข้อมูลเงินเดือน</field>
+            <field name="model_id" ref="hr_contract.model_hr_contract"/>
+            <field name="binding_model_id" ref="hr_contract.model_hr_contract"/>
+            <field name="binding_view_types">form,list</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_reset_salary_start()</field>
+        </record>
+
+
+    </data>
+</odoo>

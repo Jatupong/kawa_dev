@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--hr.salary.rule : inherit form view-->
+        <record id="hr_salary_rule_view_form_contract" model="ir.ui.view">
+            <field name="name">hr.salary.rule.form.contract</field>
+            <field name="model">hr.salary.rule</field>
+            <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//sheet/group" position="inside">
+                    <field name="cal_tax" string="Calculate Tax(คงที่)"/>
+                    <field name="cal_tax_special" string="Calculate Tax(เฉพาะงวด)"/>
+                    <field name="cal_sso"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

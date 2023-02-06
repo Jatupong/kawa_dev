@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="mail_template_request_credit_limit" model="mail.template">
+            <field name="name">Sales: Order request credit limit</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="subject">{{ object.type_name }} Over Credit Limit (Ref {{ object.name or 'n/a' }})</field>
+            <field name="email_from">{{ (object.user_id.email_formatted or user.email_formatted) }}</field>
+            <!--<field name="partner_ids">object._get_mail_group_confirm_anyway()</field>-->
+            <field name="description">Sent automatically to customers when you cancel an order</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <t t-set="doc_name" t-value="object.type_name"/>
+                        Dear Sales Manager,
+                        <br/><br/>
+                        Attached herewith, please find a
+                        <t t-out="doc_name or ''">quotation</t> <strong t-out="object.name or ''">S00052</strong>
+                        <t t-if="object.origin">
+                            (with reference: <t t-out="object.origin or ''">S00052</t> )
+                        </t>
+                        <p>
+                            amounting in <span style="font-weight: bold;" t-out="format_amount(object.amount_total, object.pricelist_id.currency_id) or ''">$ 10.00</span>
+                        </p>
+                        <p>
+                            This quote could not be confirmed due to the existing credit limit of
+                            <span style="font-weight: bold;" t-out="format_amount(object.partner_id.commercial_partner_id.credit_limit, object.pricelist_id.currency_id) or ''">$ 10.00</span>
+                        </p>
+                        <p>
+                            Request is hereby made to either increase the credit limit for this customer or follow up with customer to clear the outstanding invoices, if any, in order to be able to confirm the current quote.
+                        </p>
+                        <p>Below is a summary of the financial position of this customer in base/local currency.</p>
+                        <p>Name: <strong><t t-out="object.partner_id.name or ''">user</t></strong></p>
+                        <p>Credit Limit: <span style="font-weight: bold;" t-out="format_amount(object.partner_id.commercial_partner_id.credit, object.pricelist_id.currency_id) or ''">$ 10.00</span></p>
+                        <br/><br/>
+                        Do not hesitate to contact us if you have any questions.
+                        <br/>
+                    </p>
+                </div>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

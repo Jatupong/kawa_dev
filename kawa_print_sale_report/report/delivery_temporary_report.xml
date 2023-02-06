@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="delivery_temporary_report_id">
+        <t t-foreach="docs" t-as="o">
+
+            <t t-set="num_page" t-value="2"/>
+            <t t-foreach="range(0, num_page)" t-as="page">
+
+                <t t-call="web.basic_layout">
+
+                    <div class="header">
+                        <style>
+                            @font-face
+                            {
+                            font-family: Sarabun-Regular;
+                            src: local('United'), url("/kawa_print_sale_report/static/font/Sarabun-Regular.ttf") format('opentype');
+                            }
+                            .font_fam{
+                            font-family: Sarabun-Regular;
+                            src: local('United'), url("/kawa_print_sale_report/static/font/Sarabun-Regular.ttf") format('opentype');
+                            }
+                            table.table-bordered{
+                            border:1px solid black;
+                            width: 100%;
+                            }
+                            table.table-bordered &gt; thead &gt; tr &gt; th{
+                            border:1px solid black;
+                            padding:3px;
+                            }
+                            table.table-bordered &gt; thead &gt; tr &gt; td{
+                            border:1px solid black;
+                            padding:3px;
+                            }
+                            table.table-bordered &gt; tbody &gt; tr &gt; td{
+                            border:1px solid black;
+                            padding:3px;
+                            height:35px;
+                            }
+                            table.table-bordered &gt; tfoot &gt; tr &gt; td{
+                            border:1px solid black;
+                            padding:3px;
+                            }
+                            table.table-nobordered{
+                            margin:0px;
+                            margin-top:0px;
+                            margin-bottom:0px;
+                            width: 100%;
+                            }
+                            table.table-nobordered &gt; thead &gt; tr &gt; th{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered &gt; thead &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered &gt; tbody &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered &gt; tfoot &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+
+                            table.table-bordered-b {
+                            border:1px solid black;
+                            padding:3px;
+                            }
+                            table.table-bordered-b &gt; thead &gt; tr &gt; th{
+                            border:1px solid black;
+                            vertical-align: middle;
+                            text-align:center;
+                            padding:3px;
+                            }
+                            table.table-bordered-b &gt; tbody &gt; tr &gt; td{
+                            border:0px solid White;
+                            border-left: 1px solid black;
+                            padding:3px;
+                            }
+                            table.table-bordered-b &gt; tfoot &gt; tr &gt; td{
+                            border:1px solid black;
+                            padding:3px;
+                            }
+
+                            table.table-nobordered-b{
+                            margin:0px;
+                            width: 100%;
+                            }
+                            table.table-nobordered-b &gt; thead &gt; tr &gt; th{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered-b &gt; thead &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered-b &gt; tbody &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered-b &gt; tfoot &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            .word_wrap{
+                            word-wrap: break-word;
+                            <!--background-color:#cccccc;-->
+                            }
+                            .td_top{
+                            border-top:#000 solid 1px;
+                            }
+                            .td_left{
+                            border-left:#000 solid 1px;
+                            }
+                            .td_right{
+                            border-right:#000 solid 1px;
+                            }
+                            .td_bott{
+                            border-bottom:#000 solid 1px;
+                            }
+                            .font_size_32{
+                            font-size: 32px;
+                            line-height: 30px;
+                            }
+                            .font_size_28{
+                            font-size: 28px;
+                            line-height: 26px;
+                            }
+                            .font_size_22{
+                            font-size: 22px;
+                            line-height: 20px;
+                            }
+                            .font_size_20{
+                            font-size: 20px;
+                            line-height: 18px;
+                            }
+                            .font_size_18{
+                            font-size: 18px;
+                            line-height: 16px;
+                            }
+                            .font_size_16{
+                            font-size: 16px;
+                            line-height: 14px;
+                            }
+                            .font_size_14{
+                            font-size: 14px;
+                            line-height: 12px;
+                            }
+                        </style>
+
+                        <table class="font_fam table table-nobordered font_size_22">
+                            <tr>
+                                <td>
+                                    <span t-field="o.company_id.name"/>
+                                    <span class="font_size_16" t-if="o.company_id.company_details" t-field="o.company_id.company_details"/>
+                                </td>
+                                <td align="right">
+                                    <t t-if="page == 0">
+                                        <span>ส่งคืนบจ. คาวา</span>
+                                    </t>
+                                    <t t-if="page == 1">
+                                        <span>สำหรับลูกค้า</span>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center" style="padding-top:40px;">
+                                    <span class="font_size_24">ใบส่งของชั่วคราว</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="page">
+
+                        <style>
+                            @font-face
+                            {
+                            font-family: Sarabun-Regular;
+                            src: local('United'), url("/kawa_print_sale_report/static/font/Sarabun-Regular.ttf") format('opentype');
+                            }
+                            .font_fam{
+                            font-family: Sarabun-Regular;
+                            src: local('United'), url("/kawa_print_sale_report/static/font/Sarabun-Regular.ttf") format('opentype');
+                            }
+                            table.table-bordered{
+                            border:1px solid black;
+                            width: 100%;
+                            }
+                            table.table-bordered &gt; thead &gt; tr &gt; th{
+                            border:1px solid black;
+                            padding:3px;
+                            }
+                            table.table-bordered &gt; thead &gt; tr &gt; td{
+                            border:1px solid black;
+                            padding:3px;
+                            }
+                            table.table-bordered &gt; tbody &gt; tr &gt; td{
+                            border:1px solid black;
+                            padding:3px;
+                            height:35px;
+                            }
+                            table.table-bordered &gt; tfoot &gt; tr &gt; td{
+                            border:1px solid black;
+                            padding:3px;
+                            }
+                            table.table-nobordered{
+                            margin:0px;
+                            margin-top:0px;
+                            margin-bottom:0px;
+                            width: 100%;
+                            }
+                            table.table-nobordered &gt; thead &gt; tr &gt; th{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered &gt; thead &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered &gt; tbody &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered &gt; tfoot &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+
+                            table.table-bordered-b {
+                            border:1px solid black;
+                            padding:3px;
+                            }
+                            table.table-bordered-b &gt; thead &gt; tr &gt; th{
+                            border:1px solid black;
+                            vertical-align: middle;
+                            text-align:center;
+                            }
+                            table.table-bordered-b &gt; tbody &gt; tr &gt; td{
+                            border:1px solid black;
+                            padding:3px;
+                            }
+                            table.table-bordered-b &gt; tfoot &gt; tr &gt; td{
+                            border:1px solid black;
+                            padding:3px;
+                            }
+
+                            table.table-nobordered-b{
+                            margin:0px;
+                            width: 100%;
+                            }
+                            table.table-nobordered-b &gt; thead &gt; tr &gt; th{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered-b &gt; thead &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered-b &gt; tbody &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered-b &gt; tfoot &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            .word_wrap{
+                            word-wrap: break-word;
+                            <!--background-color:#cccccc;-->
+                            }
+                            .td_top{
+                            border-top:#000 solid 1px;
+                            }
+                            .td_left{
+                            border-left:#000 solid 1px;
+                            }
+                            .td_right{
+                            border-right:#000 solid 1px;
+                            }
+                            .td_bott{
+                            border-bottom:#000 solid 1px;
+                            }
+                            .font_size_32{
+                            font-size: 32px;
+                            line-height: 30px;
+                            }
+                            .font_size_28{
+                            font-size: 28px;
+                            line-height: 26px;
+                            }
+                            .font_size_22{
+                            font-size: 22px;
+                            line-height: 20px;
+                            }
+                            .font_size_20{
+                            font-size: 20px;
+                            line-height: 18px;
+                            }
+                            .font_size_18{
+                            font-size: 18px;
+                            line-height: 16px;
+                            }
+                            .font_size_16{
+                            font-size: 16px;
+                            line-height: 14px;
+                            }
+                            .font_size_14{
+                            font-size: 14px;
+                            line-height: 12px;
+                            }
+                        </style>
+
+                        <table width="100%" class="font_fam table table-nobordered font_size_16">
+                            <tr>
+                                <td width="70%">
+                                    <table width="100%" class="table table-nobordered">
+                                        <tr>
+                                            <td width="10%">เลขที่</td>
+                                            <td width="90%"><span t-field="o.name"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>ลูกค้า</td>
+                                            <td><span t-field="o.partner_id"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>หมายเหตุ</td>
+                                            <td>
+                                                <div style="height:55px; width:420px;">
+                                                    <span t-field="o.note"/>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td width="30%">
+                                    <table width="100%" class="table table-nobordered">
+                                        <tr>
+                                            <td width="15%">วันที่</td>
+                                            <td width="90%">
+                                                <span t-field="o.date_order"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <t t-set="i_num" t-value="0"/>
+                        <table class="table table-bordered-b font_fam font_size_16">
+                            <thead>
+                                <th width="5%">ลำดับ</th>
+                                <th width="15%">รหัสสินค้า</th>
+                                <th width="35%">รายการ</th>
+                                <th width="15%">จำนวน</th>
+                                <th width="15%">ราคา/หน่วย</th>
+                                <th width="15%">จำนวนเงิน</th>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.order_line" t-as="line">
+                                    <tr>
+                                        <td align="center">
+                                            <t t-set="i_num" t-value="i_num + 1"/>
+                                            <span t-esc="i_num"/>
+                                        </td>
+                                        <td>
+                                            <t if="line.product_id">
+                                                <span t-field="line.product_id.default_code"/>
+                                            </t>
+                                        </td>
+                                        <td>
+                                            <t if="line.product_id">
+                                                <span t-field="line.name"/>
+                                            </t>
+                                        </td>
+                                        <td align="center">
+                                            <t if="line.product_id">
+                                                <span t-field="line.product_uom_qty"/>
+                                                <span t-field="line.product_uom"/>
+                                                 <t t-if="line.product_id.weight and line.product_uom_qty">
+                                                     <br/>
+                                                    <span t-field="line.product_id.weight"/>
+                                                    x
+                                                    <span t-esc="line.product_id.weight / line.product_uom_qty"/>
+                                                </t>
+                                            </t>
+                                        </td>
+                                        <td align="right">
+                                            <t if="line.product_id">
+                                                <span t-field="line.price_unit"/>
+                                            </t>
+                                        </td>
+                                        <td align="right">
+                                            <t if="line.product_id">
+                                                <span t-field="line.price_subtotal"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td rowspan="2" colspan="4" style="border:1px solid white; border-right:1px solid black;">
+                                        <!--<span t-field="o.note"/>-->
+                                    </td>
+                                    <td>
+                                        <span>VAT </span>
+                                        <t t-set="tax_line_ids" t-value="o.order_line.mapped('tax_id')"/>
+                                        <t t-if="tax_line_ids">
+                                            <span t-esc="'%, '.join(map(lambda x: (str(int(x.amount)) or x.name), tax_line_ids))"/>%
+                                        </t>
+                                        <t t-if="not tax_line_ids">
+                                            7 %
+                                        </t>
+                                    </td>
+                                    <td align="right">
+                                        <span t-esc="'{0:,.2f}'.format(float(o.amount_tax))"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>รวมทั้งสิ้น</td>
+                                    <td align="right">
+                                        <span t-esc="'{0:,.2f}'.format(float(o.amount_total))"/></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+
+                    <div class="footer">
+                        <style>
+                            @font-face
+                            {
+                            font-family: Sarabun-Regular;
+                            src: local('United'), url("/kawa_print_sale_report/static/font/Sarabun-Regular.ttf") format('opentype');
+                            }
+                            .font_fam{
+                            font-family: Sarabun-Regular;
+                            src: local('United'), url("/kawa_print_sale_report/static/font/Sarabun-Regular.ttf") format('opentype');
+                            }
+                            table.table-bordered{
+                            border:1px solid black;
+                            width: 100%;
+                            }
+                            table.table-bordered &gt; thead &gt; tr &gt; th{
+                            border:1px solid black;
+                            padding:3px;
+                            }
+                            table.table-bordered &gt; thead &gt; tr &gt; td{
+                            border:1px solid black;
+                            padding:3px;
+                            }
+                            table.table-bordered &gt; tbody &gt; tr &gt; td{
+                            border:1px solid black;
+                            padding:3px;
+                            height:35px;
+                            }
+                            table.table-bordered &gt; tfoot &gt; tr &gt; td{
+                            border:1px solid black;
+                            padding:3px;
+                            }
+                            table.table-nobordered{
+                            margin:0px;
+                            margin-top:0px;
+                            margin-bottom:0px;
+                            width: 100%;
+                            }
+                            table.table-nobordered &gt; thead &gt; tr &gt; th{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered &gt; thead &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered &gt; tbody &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered &gt; tfoot &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+
+                            table.table-bordered-b {
+                            border:1px solid black;
+                            padding:3px;
+                            }
+                            table.table-bordered-b &gt; thead &gt; tr &gt; th{
+                            border:1px solid black;
+                            vertical-align: middle;
+                            text-align:center;
+                            padding:3px;
+                            }
+                            table.table-bordered-b &gt; tbody &gt; tr &gt; td{
+                            border:0px solid White;
+                            border-left: 1px solid black;
+                            padding:3px;
+                            }
+                            table.table-bordered-b &gt; tfoot &gt; tr &gt; td{
+                            border:1px solid black;
+                            padding:3px;
+                            }
+
+                            table.table-nobordered-b{
+                            margin:0px;
+                            width: 100%;
+                            }
+                            table.table-nobordered-b &gt; thead &gt; tr &gt; th{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered-b &gt; thead &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered-b &gt; tbody &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            table.table-nobordered-b &gt; tfoot &gt; tr &gt; td{
+                            border:1px solid white;
+                            padding:0px;
+                            }
+                            .word_wrap{
+                            word-wrap: break-word;
+                            <!--background-color:#cccccc;-->
+                            }
+                            .td_top{
+                            border-top:#000 solid 1px;
+                            }
+                            .td_left{
+                            border-left:#000 solid 1px;
+                            }
+                            .td_right{
+                            border-right:#000 solid 1px;
+                            }
+                            .td_bott{
+                            border-bottom:#000 solid 1px;
+                            }
+                            .font_size_32{
+                            font-size: 32px;
+                            line-height: 30px;
+                            }
+                            .font_size_28{
+                            font-size: 28px;
+                            line-height: 26px;
+                            }
+                            .font_size_22{
+                            font-size: 22px;
+                            line-height: 20px;
+                            }
+                            .font_size_20{
+                            font-size: 20px;
+                            line-height: 18px;
+                            }
+                            .font_size_18{
+                            font-size: 18px;
+                            line-height: 16px;
+                            }
+                            .font_size_16{
+                            font-size: 16px;
+                            line-height: 14px;
+                            }
+                            .font_size_14{
+                            font-size: 14px;
+                            line-height: 12px;
+                            }
+                        </style>
+                        <div class="last-page">
+                            <table width="100%" class="font_fam font_size_16 table table-nobordered">
+                                <tr>
+                                    <td width="34%">
+                                        <div style="width:100%; height:90px; position:relative;">
+                                        </div>
+                                        <div>
+                                            <span>ลงชื่อ..........................................ผู้รับสินค้า</span><br/>
+                                            <span>วันที่...........................................</span><br/>
+                                        </div>
+                                    </td>
+                                    <td width="33%">
+                                        <div style="width:100%; height:90px; position:relative;">
+                                        </div>
+                                        <div>
+                                            <span>ลงชื่อ..........................................ผู้ส่งสินค้า</span><br/>
+                                            <span>วันที่...........................................</span><br/>
+                                        </div>
+                                    </td>
+                                    <td width="33%">
+                                        <div style="width:100%; height:90px; position:relative;">
+                                        </div>
+                                        <div>
+                                            <span>ลงชื่อ.................................................</span><br/>
+                                            <span>วันที่..................................................</span><br/>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </t>
+
+            </t>
+        </t>
+    </template>
+
+    <record id="paperformat_A4_kawa_delivery_temporary" model="report.paperformat">
+        <field name="name">A4_kawa_delivery_temporary</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">65</field>
+        <field name="margin_bottom">45</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">60</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+            id="delivery_temporary_report"
+            model="sale.order"
+            string="ใบส่งของชั่วคราว(PDF)"
+            report_type="qweb-pdf"
+            paperformat="paperformat_A4_kawa_delivery_temporary"
+            name="kawa_print_sale_report.delivery_temporary_report_id"
+            file="kawa_print_sale_report.delivery_temporary_report_id"
+            menu="True"
+            attachment_use="False"/>
+
+</odoo>

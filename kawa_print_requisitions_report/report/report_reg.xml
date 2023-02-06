@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+                id="demo_req_report_xls"
+                model="stock.picking"
+                string="ใบเบิกสินค้าตัวอย่าง(Excel)"
+                report_type="xlsx"
+                name="kawa_print_requisitions_report.demo_req_report_xls"
+                file="kawa_print_requisitions_report.demo_req_report_xls"
+                menu="True"
+                attachment_use="False"/>
+
+        <record id="paperformat_A4_demo_requisitions" model="report.paperformat">
+            <field name="name">paperformat_A4_demo_requisitions</field>
+            <field name="default" eval="False"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">30</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">25</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report
+                id="demo_req_report"
+                model="stock.picking"
+                string="ใบเบิกสินค้าตัวอย่าง(PDF)"
+                report_type="qweb-pdf"
+                paperformat="paperformat_A4_demo_requisitions"
+                name="kawa_print_requisitions_report.demo_req_report_id"
+                file="kawa_print_requisitions_report.demo_req_report_id"
+                menu="True"
+                attachment_use="False"/>
+
+        <report
+                id="demo_req_specific_xls_id"
+                model="stock.picking"
+                string="ใบเบิกตัวอย่างจากคลังใหญ่และคลังตัวอย่าง(Excel)"
+                report_type="xlsx"
+                name="kawa_print_requisitions_report.demo_req_specific_xls"
+                file="kawa_print_requisitions_report.demo_req_specific_xls"
+                menu="True"
+                attachment_use="False"/>
+
+        <record id="paperformat_A4_demo_req_specific" model="report.paperformat">
+            <field name="name">paperformat_A4_demo_req_specific</field>
+            <field name="default" eval="False"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">15</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report
+                id="demo_req_specific"
+                model="stock.picking"
+                string="ใบเบิกตัวอย่างจากคลังใหญ่และคลังตัวอย่าง(PDF)"
+                report_type="qweb-pdf"
+                paperformat="paperformat_A4_demo_req_specific"
+                name="kawa_print_requisitions_report.demo_req_specific_id"
+                file="kawa_print_requisitions_report.demo_req_specific_id"
+                menu="True"
+                attachment_use="False"/>
+
+    </data>
+</odoo>

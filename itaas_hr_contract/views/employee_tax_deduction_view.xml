@@ -1,0 +1,53 @@
+<odoo>
+    <data>
+
+        <!-- Tax Deduction : menuitem -->
+        <menuitem id="menu_employee_tax_deduction"
+                  name="Tax Deduction"
+                  parent="hr.menu_human_resources_configuration"
+                  sequence="220"/>
+
+        <!-- employee.tax.deduction.type : form views -->
+        <record id="view_employee_tax_deduction_type_form" model="ir.ui.view">
+            <field name="name">employee.tax.deduction.type.form</field>
+            <field name="model">employee.tax.deduction.type</field>
+            <field name="arch" type="xml">
+                <form string="Tax Deduction Type">
+                    <sheet>
+                        <group>
+                            <field name="name" required="True"/>
+                            <field name="amount" required="True"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- employee.tax.deduction.type : tree views -->
+        <record id="view_employee_tax_deduction_type_tree" model="ir.ui.view">
+            <field name="name">employee.tax.deduction.type.tree</field>
+            <field name="model">employee.tax.deduction.type</field>
+            <field name="arch" type="xml">
+                <tree string="Tax Deduction Type">
+                    <field name="name"/>
+                    <field name="amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- employee.tax.deduction.type : action -->
+        <record id="action_employee_tax_deduction_type" model="ir.actions.act_window">
+            <field name="name">Tax Deduction Type</field>
+            <field name="res_model">employee.tax.deduction.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- employee.tax.deduction.type : menuitem -->
+        <menuitem id="menu_employee_tax_deduction_type"
+                  name="Tax Deduction Type"
+                  parent="menu_employee_tax_deduction"
+                  action="action_employee_tax_deduction_type"
+                  sequence="230"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="view_wizard_warning_override_credit" model="ir.ui.view">
+		<field name="name">Warning Override Credit</field>
+		<field name="model">wizard.warning.override.credit</field>
+		<field name="arch" type="xml">
+			<form>
+				<p><field name="partner_credit_warning"/></p>
+				<footer>
+					<button name="action_request" string="Request to confirm" type="object" class="btn-primary"/>
+					<button name="action_confirm_anyway" string="Confirm Anyway" type="object" class="btn-primary ml128" />
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_wizard_warning_override_credit" model="ir.actions.act_window">
+		<field name="name">Warning Override Credit</field>
+		<field name="res_model">wizard.warning.override.credit</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="view_wizard_warning_override_credit"/>
+		<field name="target">new</field>
+	</record>
+
+</odoo>
+
+
+

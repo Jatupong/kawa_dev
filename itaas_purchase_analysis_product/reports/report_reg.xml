@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+                id="purchase_product_xls"
+                model="wizard.purchase.product.report"
+                string="Purchase by product report"
+                report_type="xlsx"
+                name="itaas_purchase_analysis_product.purchase_product_xls"
+                file="itaas_purchase_analysis_product.purchase_product_xls"
+                menu="False"
+                attachment_use="False"/>
+
+    </data>
+</odoo>

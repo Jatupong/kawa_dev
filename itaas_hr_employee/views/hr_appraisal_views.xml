@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_appraisal_training" model="ir.ui.view">
+        <field name="name">view.hr.appraisal.training</field>
+        <field name="model">hr.appraisal</field>
+        <field name="inherit_id" ref="hr_appraisal.view_hr_appraisal_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr='//header' position="inside">
+                <button name="action_create_training" string="Create Training" states="pending" type="object" class="oe_highlight"
+                        groups="hr_appraisal.group_hr_appraisal_user"/>
+            </xpath>
+            <xpath expr='//notebook' position="inside">
+                <page string="Training">
+                    <field name="training_ids" nolabel="1" attrs="{'readonly': [('state', 'not in', ('new','pending'))]}">
+                        <tree string="Employee Training" editable="bottom">
+                            <field name="hr_appraisal_id" invisible="1"/>
+                            <field name="course_id"/>
+                            <field name="description"/>
+                            <field name="state"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

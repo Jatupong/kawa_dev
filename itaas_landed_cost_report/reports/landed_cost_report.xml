@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="landed_cost_report_id">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.basic_layout">
+
+                <style>
+                    @font-face
+                    {
+                    font-family: Sarabun-Regular;
+                    src: local('United'), url("/kawa_print_inventory_report/static/font/Sarabun-Regular.ttf") format('opentype');
+                    }
+                    .font_fam{
+                    font-family: Sarabun-Regular;
+                    src: local('United'), url("/kawa_print_inventory_report/static/font/Sarabun-Regular.ttf") format('opentype');
+                    }
+                    table.table-bordered{
+                    border:1px solid black;
+                    width: 100%;
+                    }
+                    table.table-bordered &gt; thead &gt; tr &gt; th{
+                    border:1px solid black;
+                    padding:3px;
+                    }
+                    table.table-bordered &gt; thead &gt; tr &gt; td{
+                    border:1px solid black;
+                    padding:3px;
+                    }
+                    table.table-bordered &gt; tbody &gt; tr &gt; td{
+                    border:1px solid black;
+                    padding:3px;
+                    height:35px;
+                    }
+                    table.table-bordered &gt; tfoot &gt; tr &gt; td{
+                    border:1px solid black;
+                    padding:3px;
+                    }
+                    table.table-nobordered{
+                    margin:0px;
+                    margin-top:0px;
+                    margin-bottom:0px;
+                    width: 100%;
+                    }
+                    table.table-nobordered &gt; thead &gt; tr &gt; th{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+                    table.table-nobordered &gt; thead &gt; tr &gt; td{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+                    table.table-nobordered &gt; tbody &gt; tr &gt; td{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+                    table.table-nobordered &gt; tfoot &gt; tr &gt; td{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+
+                    table.table-bordered-b {
+                    border:1px solid black;
+                    padding:3px;
+                    }
+                    table.table-bordered-b &gt; thead &gt; tr &gt; th{
+                    border:1px solid black;
+                    vertical-align: middle;
+                    text-align:center;
+                    padding:3px;
+                    }
+                    table.table-bordered-b &gt; tbody &gt; tr &gt; td{
+                    border:0px solid White;
+                    border-left: 1px solid black;
+                    padding:3px;
+                    }
+                    table.table-bordered-b &gt; tfoot &gt; tr &gt; td{
+                    border:1px solid black;
+                    padding:3px;
+                    }
+
+                    table.table-nobordered-b{
+                    margin:0px;
+                    width: 100%;
+                    }
+                    table.table-nobordered-b &gt; thead &gt; tr &gt; th{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+                    table.table-nobordered-b &gt; thead &gt; tr &gt; td{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+                    table.table-nobordered-b &gt; tbody &gt; tr &gt; td{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+                    table.table-nobordered-b &gt; tfoot &gt; tr &gt; td{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+                    .word_wrap{
+                    word-wrap: break-word;
+                    <!--background-color:#cccccc;-->
+                    }
+                    .td_top{
+                    border-top:#000 solid 1px;
+                    }
+                    .td_left{
+                    border-left:#000 solid 1px;
+                    }
+                    .td_right{
+                    border-right:#000 solid 1px;
+                    }
+                    .td_bott{
+                    border-bottom:#000 solid 1px;
+                    }
+                    .font_size_32{
+                    font-size: 32px;
+                    line-height: 30px;
+                    }
+                    .font_size_28{
+                    font-size: 28px;
+                    line-height: 26px;
+                    }
+                    .font_size_22{
+                    font-size: 22px;
+                    line-height: 20px;
+                    }
+                    .font_size_20{
+                    font-size: 20px;
+                    line-height: 18px;
+                    }
+                    .font_size_18{
+                    font-size: 18px;
+                    line-height: 16px;
+                    }
+                    .font_size_16{
+                    font-size: 16px;
+                    line-height: 14px;
+                    }
+                    .font_size_14{
+                    font-size: 14px;
+                    line-height: 12px;
+                    }
+                </style>
+
+                <div class="header">
+
+                    <table class="table table-nobordered font_fam font_size_18">
+                        <tr>
+                            <td colspan="4">
+                                <span class="font_size_20" t-field="o.company_id"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" align="center">
+                                <span>ใบปรับต้นทุน</span>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-nobordered font_fam font_size_16" style="margin-top:30px;">
+                        <tr>
+                            <td width="15%" rowspan="2">
+                                <span>หมายเหตุ</span>
+                            </td>
+                            <td width="40%" rowspan="2">
+                                <t t-if="o.picking_ids">
+                                    <span t-esc="', '.join(o.picking_ids.mapped('name'))"/>
+                                </t>
+                            </td>
+                            <td width="15%">
+                                <span>เลขที่เอกสาร</span>
+                            </td>
+                            <td width="30%">
+                                <span t-field="o.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>วันที่</span>
+                            </td>
+                            <td>
+                                <span t-field="o.date"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+                <div class="page">
+
+                    <t t-set="i_num" t-value="0"/>
+                    <t t-set="price_total" t-value="0.0"/>
+                    <table class="font_fam table table-bordered-b font_size_16">
+                        <thead>
+                            <th width="5%">No.</th>
+                            <th width="30%">รหัสสินค้า/รายละเอียด</th>
+                            <th width="25%">สำหรับล๊อตขเลขที่</th>
+                            <th width="15%">วันที่</th>
+                            <th width="25%">รวม</th>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o.cost_lines" t-as="line">
+                                <t t-set="i_num" t-value="i_num + 1"/>
+                                <tr>
+                                    <td align="center">
+                                        <span t-esc="i_num"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.product_id"/>
+                                    </td>
+                                    <td></td>
+                                    <td align="center">
+                                        <span t-field="line.cost_id.date"/>
+                                    </td>
+                                    <td align="right">
+                                        <span t-field="line.price_unit"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" align="right">
+                                    <B>รวมทั้งหมด</B>
+                                </td>
+                                <td align="right">
+                                    <span t-esc="'{0:,.2f}'.format(float(price_total))"/>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="paperformat_A4_landed_cost" model="report.paperformat">
+        <field name="name">paperformat_A4_landed_cost</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">30</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">25</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+            id="landed_cost_report"
+            model="stock.landed.cost"
+            string="CA ต้นทุนสินค้าสำหรับสินค้าจากต่างประเทศ(PDF)"
+            report_type="qweb-pdf"
+            paperformat="paperformat_A4_landed_cost"
+            name="itaas_landed_cost_report.landed_cost_report_id"
+            file="itaas_landed_cost_report.landed_cost_report_id"
+            menu="True"
+            attachment_use="False"/>
+
+</odoo>

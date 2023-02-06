@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_wizard_warning_override_credit_group_user,wizard_warning_override_credit group_user,model_wizard_warning_override_credit,base.group_user,1,1,1,1

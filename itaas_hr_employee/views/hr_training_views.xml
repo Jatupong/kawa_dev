@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_hr_employee_training_main"
+              name="Training"
+              parent="hr.menu_hr_root"
+              sequence="50"/>
+
+    <!--hr.course.schedule-->
+    <record id="view_hr_course_schedule_form" model="ir.ui.view">
+        <field name="name">hr.course.schedule.form</field>
+        <field name="model">hr.course.schedule</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_open" type="object" string="Open" class="oe_highlight" states="new"/>
+                    <button name="action_close" type="object" string="Close" class="oe_highlight" states="open"/>
+                    <button name="action_set_to_draft" type="object" string="Set to Draft" states="open,close"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="course_id" attrs="{'readonly': [('state', 'not in', ('new'))]}"/>
+                            <field name="datetime_form" attrs="{'readonly': [('state', 'not in', ('new'))]}"/>
+                            <field name="datetime_to" attrs="{'readonly': [('state', 'not in', ('new'))]}"/>
+                            <label for="duration_days"/>
+                            <div>
+                                <field name="duration_days"/> days
+                            </div>
+                        </group>
+                        <group>
+                            <field name="capacity" attrs="{'readonly': [('state', 'not in', ('new'))]}"/>
+                            <field name="remain" readonly="1" force_save="1"/>
+                            <field name="location" attrs="{'readonly': [('state', 'not in', ('new'))]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Content">
+                            <field name="description" placeholder="Description..." attrs="{'readonly': [('state', 'not in', ('new'))]}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hr_course_schedule_tree" model="ir.ui.view">
+        <field name="name">hr.course.schedule.tree</field>
+        <field name="model">hr.course.schedule</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="course_id"/>
+                <field name="datetime_form"/>
+                <field name="datetime_to"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_hr_course_schedule" model="ir.actions.act_window">
+        <field name="name">Course Schedule</field>
+        <field name="res_model">hr.course.schedule</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_hr_course_schedule_tree"/>
+    </record>
+
+    <menuitem id="menu_hr_course_schedule"
+              name="Course Schedule"
+              parent="menu_hr_employee_training_main"
+              sequence="1"
+              action="action_hr_course_schedule"/>
+
+    <!--hr.training.request-->
+    <record id="view_hr_training_request_form" model="ir.ui.view">
+        <field name="name">hr.training.request.form</field>
+        <field name="model">hr.training.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit" type="object" string="Submit"
+                            class="oe_highlight" states="new"/>
+                    <button name="action_department_approve" type="object" string="Department Approve"
+                            class="oe_highlight" states="submit" groups="hr.group_hr_manager"/>
+                    <button name="action_hr_approve" type="object" string="Hr Approve"
+                            class="oe_highlight" states="department_approve" groups="hr.group_hr_manager"/>
+                    <button name="action_done" type="object" string="CEO Approve"
+                            class="oe_highlight" states="hr_approve" groups="itaas_hr_employee.group_hr_ceo_manager"/>
+                    <button name="action_reject" type="object" string="Reject" states="new,submit,department_approve,hr_approve"/>
+                    <button name="action_set_to_draft" type="object" string="Set to draft"
+                            class="oe_highlight" states="reject"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" attrs="{'readonly': [('state', 'not in', ('new'))]}"/>
+                            <field name="evaluator_id" string="ผู้ประเมินผลอบรม" attrs="{'required': [('state', 'in', ('department_approve','hr_approve','done'))]}"/>
+                        </group>
+                        <group>
+                            <field name="course_id" attrs="{'readonly': [('state', 'not in', ('new'))]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Content">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hr_training_request_tree" model="ir.ui.view">
+        <field name="name">hr.training.request.tree</field>
+        <field name="model">hr.training.request</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="course_id"/>
+                <field name="evaluator_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_hr_training_request" model="ir.actions.act_window">
+        <field name="name">Training Request</field>
+        <field name="res_model">hr.training.request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_hr_training_request_tree"/>
+    </record>
+
+    <menuitem id="menu_hr_training_request"
+              name="Training Request"
+              parent="menu_hr_employee_training_main"
+              sequence="2"
+              action="action_hr_training_request"/>
+
+    <record id="view_hr_training_record_form" model="ir.ui.view">
+        <field name="name">hr.training.record.form</field>
+        <field name="model">hr.training.record</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_progress" type="object" string="Progress" class="oe_highlight" states="new"/>
+                    <button name="action_validate" type="object" string="Validate" class="oe_highlight" states="progress"/>
+                    <button name="action_reject" type="object" string="Reject" states="progress" groups="hr.group_hr_manager"/>
+                    <button name="action_to_new" type="object" string="Set to new" states="reject,cancel" class="oe_highlight" groups="hr.group_hr_manager"/>
+                    <button name="action_cancel" type="object" string="Cancal" states="new"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" readonly="1"/>
+                            <field name="course_id" readonly="1"/>
+                            <field name="evaluator_id" string="ผู้ประเมินผลอบรม" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="course_schedule_id" invisble="1"/>
+                            <field name="datetime_form"/>
+                            <field name="datetime_to"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Content">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hr_training_record_tree" model="ir.ui.view">
+        <field name="name">hr.training.record.tree</field>
+        <field name="model">hr.training.record</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="course_id"/>
+                <field name="datetime_form"/>
+                <field name="datetime_to"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_hr_training_record" model="ir.actions.act_window">
+        <field name="name">Training Record</field>
+        <field name="res_model">hr.training.record</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_hr_training_record_tree"/>
+    </record>
+
+    <menuitem id="menu_hr_training_record"
+              name="Training Record"
+              parent="menu_hr_employee_training_main"
+              sequence="3"
+              action="action_hr_training_record"/>
+
+    <record id="view_hr_employee_training_form" model="ir.ui.view">
+        <field name="name">hr.employee.training.form</field>
+        <field name="model">hr.employee.training</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="date_form"/>
+                            <field name="date_to"/>
+                            <field name="certificate_id"/>
+                            <field name="exp_certificate_date"/>
+                        </group>
+                        <group>
+                            <field name="name"/>
+                            <field name="note"/>
+                            <field name="location"/>
+                            <field name="training_record_id" invisible="1"/>
+                            <field name="evaluation"/>
+                            <field name="evaluation_date" attrs="{'invisible': [('evaluation', '=', False)]}" readonly="1" force_save="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hr_employee_training_tree" model="ir.ui.view">
+        <field name="name">hr.employee.training.tree</field>
+        <field name="model">hr.employee.training</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="date_form"/>
+                <field name="date_to"/>
+                <field name="name"/>
+                <field name="note"/>
+                <field name="certificate_id"/>
+                <field name="exp_certificate_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_hr_employee_training" model="ir.actions.act_window">
+        <field name="name">Employee Training</field>
+        <field name="res_model">hr.employee.training</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_hr_employee_training_tree"/>
+    </record>
+
+    <menuitem id="menu_hr_employee_training"
+              name="Employee Training"
+              parent="menu_hr_employee_training_main"
+              sequence="4"
+              action="action_hr_employee_training"/>
+
+    <record id="view_course_training_form" model="ir.ui.view">
+        <field name="name">course.training.form</field>
+        <field name="model">course.training</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="price"/>
+                        </group>
+                        <group>
+                            <field name="certificate_id"/>
+                            <field name="exp_certificate_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Content">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_course_training_tree" model="ir.ui.view">
+        <field name="name">course.training.tree</field>
+        <field name="model">course.training</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_course_training" model="ir.actions.act_window">
+        <field name="name">Course Training</field>
+        <field name="res_model">course.training</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_course_training_tree"/>
+    </record>
+
+    <menuitem id="menu_course_training"
+              name="Course Training"
+              parent="menu_hr_employee_training_main"
+              sequence="5"
+              action="action_course_training"/>
+
+    <record id="view_hr_certificate_form" model="ir.ui.view">
+        <field name="name">hr.certificate.form</field>
+        <field name="model">hr.certificate</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="exp_certificate_date"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hr_certificate_tree" model="ir.ui.view">
+        <field name="name">hr.certificate.tree</field>
+        <field name="model">hr.certificate</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="exp_certificate_date"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_hr_certificate" model="ir.actions.act_window">
+        <field name="name">Certificate</field>
+        <field name="res_model">hr.certificate</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_course_training_tree"/>
+    </record>
+
+    <menuitem id="menu_hr_certificate"
+              name="Certificate"
+              parent="menu_hr_employee_training_main"
+              sequence="6"
+              action="action_hr_certificate"/>
+
+
+</odoo>

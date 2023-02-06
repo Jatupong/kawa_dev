@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="demo_req_report_id">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.basic_layout">
+
+                <style>
+                    @font-face
+                    {
+                    font-family: Sarabun-Regular;
+                    src: local('United'), url("/kawa_print_requisitions_report/static/font/Sarabun-Regular.ttf") format('opentype');
+                    }
+                    .font_fam{
+                    font-family: Sarabun-Regular;
+                    src: local('United'), url("/kawa_print_requisitions_report/static/font/Sarabun-Regular.ttf") format('opentype');
+                    }
+                    table.table-bordered{
+                    border:1px solid black;
+                    width: 100%;
+                    }
+                    table.table-bordered &gt; thead &gt; tr &gt; th{
+                    border:1px solid black;
+                    padding:3px;
+                    }
+                    table.table-bordered &gt; thead &gt; tr &gt; td{
+                    border:1px solid black;
+                    padding:3px;
+                    }
+                    table.table-bordered &gt; tbody &gt; tr &gt; td{
+                    border:1px solid black;
+                    padding:3px;
+                    height:35px;
+                    }
+                    table.table-bordered &gt; tfoot &gt; tr &gt; td{
+                    border:1px solid black;
+                    padding:3px;
+                    }
+                    table.table-nobordered{
+                    margin:0px;
+                    margin-top:0px;
+                    margin-bottom:0px;
+                    width: 100%;
+                    }
+                    table.table-nobordered &gt; thead &gt; tr &gt; th{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+                    table.table-nobordered &gt; thead &gt; tr &gt; td{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+                    table.table-nobordered &gt; tbody &gt; tr &gt; td{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+                    table.table-nobordered &gt; tfoot &gt; tr &gt; td{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+
+                    table.table-bordered-b {
+                    border:1px solid black;
+                    padding:3px;
+                    }
+                    table.table-bordered-b &gt; thead &gt; tr &gt; th{
+                    border:1px solid black;
+                    vertical-align: middle;
+                    text-align:center;
+                    padding:3px;
+                    }
+                    table.table-bordered-b &gt; tbody &gt; tr &gt; td{
+                    border:0px solid White;
+                    border-left: 1px solid black;
+                    padding:3px;
+                    }
+                    table.table-bordered-b &gt; tfoot &gt; tr &gt; td{
+                    border:1px solid black;
+                    padding:3px;
+                    }
+
+                    table.table-nobordered-b{
+                    margin:0px;
+                    width: 100%;
+                    }
+                    table.table-nobordered-b &gt; thead &gt; tr &gt; th{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+                    table.table-nobordered-b &gt; thead &gt; tr &gt; td{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+                    table.table-nobordered-b &gt; tbody &gt; tr &gt; td{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+                    table.table-nobordered-b &gt; tfoot &gt; tr &gt; td{
+                    border:1px solid white;
+                    padding:0px;
+                    }
+                    .word_wrap{
+                    word-wrap: break-word;
+                    <!--background-color:#cccccc;-->
+                    }
+                    .td_top{
+                    border-top:#000 solid 1px;
+                    }
+                    .td_left{
+                    border-left:#000 solid 1px;
+                    }
+                    .td_right{
+                    border-right:#000 solid 1px;
+                    }
+                    .td_bott{
+                    border-bottom:#000 solid 1px;
+                    }
+                    .font_size_32{
+                    font-size: 32px;
+                    line-height: 30px;
+                    }
+                    .font_size_28{
+                    font-size: 28px;
+                    line-height: 26px;
+                    }
+                    .font_size_22{
+                    font-size: 22px;
+                    line-height: 20px;
+                    }
+                    .font_size_20{
+                    font-size: 20px;
+                    line-height: 18px;
+                    }
+                    .font_size_18{
+                    font-size: 18px;
+                    line-height: 16px;
+                    }
+                    .font_size_16{
+                    font-size: 16px;
+                    line-height: 14px;
+                    }
+                    .font_size_14{
+                    font-size: 14px;
+                    line-height: 12px;
+                    }
+                </style>
+
+                <div class="header">
+                    <center>
+                        <div style="height:150px;">
+                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height:150px; max-width:150px;" alt="Logo"/>
+                        </div>
+                        <div class="font_fam font_size_20">
+                            <span>ใบขอซื้อสินค้า / ใบขอเบิกสินค้า</span>
+                        </div>
+                    </center>
+                </div>
+
+                <div class="page">
+                    <t t-set="requisition_type_ids" t-value="o.env['material.purchase.requisition.type'].sudo().search([])"/>
+                    <table class="table table-nobordered font_fam font_size_16">
+                        <tr>
+                            <td width="8%">แผนก</td>
+                            <td width="25%"/>
+                            <td width="30%"/>
+                            <td width="12%">วันที่/Date</td>
+                            <td width="25%"><span t-field="o.scheduled_date"/></td>
+                        </tr>
+                        <tr>
+                            <td>หมายเหตุ</td>
+                            <td>
+                                <span t-field="o.note"/>
+                            </td>
+                            <td/>
+                            <td>วัตถุประสงค์การใช้งาน</td>
+                            <td>
+                                <table class="table table-nobordered font_fam font_size_16">
+                                    <t t-foreach="requisition_type_ids" t-as="req_type">
+                                        <tr>
+                                            <t t-if="req_type.id == o.type_request_id.id">
+                                                <td>(<span style="color:white;">____</span>/<span style="color:white;">____</span>)</td>
+                                            </t>
+                                            <t t-else="">
+                                                <td>(<span style="color:white;">____/____</span>)</td>
+                                            </t>
+                                            <td><span t-field="req_type.name"/></td>
+                                        </tr>
+                                    </t>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <t t-set="i_num" t-value="0"/>
+                    <table class="table table-bordered-b font_fam font_size_16">
+                        <thead>
+                            <tr>
+                                <th width="5%">ลำดับที่</th>
+                                <th width="35%">รายการ</th>
+                                <th width="10%">จำนวน</th>
+                                <th width="15%">ลูกค้า</th>
+                                <th width="20%">เพื่อผลิตสินค้า</th>
+                                <th width="15%">จำนวนเงิน</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o.move_line_ids" t-as="line">
+                                <tr>
+                                    <td align="center">
+                                        <t t-set="i_num" t-value="i_num + 1"/>
+                                        <span t-esc="i_num"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.product_id"/>
+                                    </td>
+                                    <td align="right">
+                                        <span t-field="line.qty_done"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.move_id.partner_id"/>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td align="right">
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td rowspan="3" colspan="4" style="border:1px solid white; border-right:1px solid black;">
+                                    <div style="width:100%; height:100px; position:relative;">
+                                    </div>
+                                    ผู้เบิกสินค้า ______________________________________________
+                                </td>
+                                <td>รวม</td>
+                                <td align="right"></td>
+                            </tr>
+                            <tr>
+                                <td>VAT 7%</td>
+                                <td align="right"></td>
+                            </tr>
+                            <tr>
+                                <td>รวมทั้งสิ้น</td>
+                                <td align="right"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <table class="table table-nobordered font_fam font_size_16">
+                        <tr>
+                            <td width="30%">
+                                <div style="width:100%; height:100px; position:relative;">
+                                </div>
+                                ผู้อนุมัติ ________________________________________________
+                            </td>
+                            <td width="30%">
+                                <div style="width:100%; height:100px; position:relative;">
+                                </div>
+                                ผู้จัดสินค้า ______________________________________________
+                            </td>
+                            <td width="30%">
+                                <div style="width:100%; height:100px; position:relative;">
+                                </div>
+                                ผู้ตรวจสอบ _____________________________________________
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </t>
+        </t>
+    </template>
+
+</odoo>

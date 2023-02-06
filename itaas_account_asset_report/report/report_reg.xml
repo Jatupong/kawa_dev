@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="write_off_and_sale_xls"
+                model="asset.report.write.off"
+                string="Asset Report"
+                report_type="xlsx"
+                name="eep_account_asset_report.write_off_and_sale_xls"
+                file="eep_account_asset_report.write_off_and_sale_xls"
+                menu="False"
+                attachment_use="False"/>
+    </data>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_wizard_purchase_product_report_group_user,wizard_purchase_product_report group_user,model_wizard_purchase_product_report,base.group_user,1,1,1,1

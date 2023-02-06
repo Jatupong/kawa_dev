@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+                id="kawa_internal_tranfer_xls"
+                model="stock.picking"
+                string="ใบย้ายคลังสินค้า(Excel)"
+                report_type="xlsx"
+                name="kawa_print_inventory_report.kawa_internal_tranfer_xls"
+                file="kawa_print_inventory_report.kawa_internal_tranfer_xls"
+                menu="True"
+                attachment_use="False"/>
+
+        <record id="paperformat_A4_kawa_internal_tranfer" model="report.paperformat">
+            <field name="name">A4_kawa_internal_tranfer</field>
+            <field name="default" eval="False"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">30</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">25</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report
+                id="kawa_internal_tranfer"
+                model="stock.picking"
+                string="ใบย้ายคลังสินค้า(PDF)"
+                report_type="qweb-pdf"
+                paperformat="paperformat_A4_kawa_internal_tranfer"
+                name="kawa_print_inventory_report.kawa_internal_tranfer_id"
+                file="kawa_print_inventory_report.kawa_internal_tranfer_id"
+                menu="True"
+                attachment_use="False"/>
+
+    </data>
+</odoo>

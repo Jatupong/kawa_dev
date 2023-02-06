@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_asset_disposal_type"  model="ir.ui.view">
+        <field name="name">account.asset.disposal.type</field>
+        <field name="model">account.asset</field>
+        <field name="inherit_id" ref="itaas_account_asset_management.view_account_asset_form_more_field_for_thailand"/>
+        <field name="arch" type="xml">
+            <field name="acquisition_date" position="after">
+                <field name="disposal_type"/>
+            </field>
+
+        </field>
+    </record>
+</odoo>

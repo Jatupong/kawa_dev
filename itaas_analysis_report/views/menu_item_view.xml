@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!--Sale-->
+        <menuitem id="menu_sale_analysis_report"
+                  name="Sale Analysis"
+                  groups="sales_team.group_sale_manager"
+                  sequence="99"
+                  parent="sale.sale_menu_root"/>
+
+        <!--Purchase-->
+        <menuitem id="menu_purchase_analysis_report"
+                  name="Purchase Analysis"
+                  groups="purchase.group_purchase_manager"
+                  sequence="99"
+                  parent="purchase.menu_purchase_root"/>
+
+        <!--Stock-->
+        <menuitem id="menu_stock_analysis_report"
+                  name="Stock Analysis"
+                  groups="stock.group_stock_manager"
+                  sequence="99"
+                  parent="stock.menu_stock_root"/>
+
+        <!--Account-->
+        <menuitem id="menu_account_analysis_report"
+                  name="Account Analysis"
+                  groups="account.group_account_manager"
+                  sequence="99"
+                  parent="account.menu_finance"/>
+
+
+    </data>
+</odoo>

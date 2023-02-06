@@ -1,0 +1,19 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_hr_employee_health_user,hr_employee_health group_user,model_hr_employee_health,hr.group_hr_user,1,1,1,1
+access_hr_training_request_user,hr_training_request group_user,model_hr_training_request,hr.group_hr_user,1,1,1,1
+access_hr_course_schedule_user,hr_course_schedule group_user,model_hr_course_schedule,hr.group_hr_user,1,1,1,1
+access_hr_training_record_user,hr_training_record group_user,model_hr_training_record,hr.group_hr_user,1,1,1,1
+access_hr_employee_training_user,hr_employee_training group_user,model_hr_employee_training,hr.group_hr_user,1,1,1,1
+access_hr_appraisal_training_user,hr_appraisal_training group_user,model_hr_appraisal_training,hr.group_hr_user,1,1,1,1
+access_course_training_user,course_training group_user,model_course_training,hr.group_hr_user,1,1,1,1
+access_hr_certificate_user,hr_certificate group_user,model_hr_certificate,hr.group_hr_user,1,1,1,1
+access_hr_employee_children_user,hr_employee_children group_user,model_hr_employee_children,hr.group_hr_user,1,1,1,1
+access_hr_employee_education_user,hr_employee_education group_user,model_hr_employee_education,hr.group_hr_user,1,1,1,1
+access_hr_employee_experience_user,hr_employee_experience group_user,model_hr_employee_experience,hr.group_hr_user,1,1,1,1
+access_hr_employee_language_user,hr_employee_language group_user,model_hr_employee_language,hr.group_hr_user,1,1,1,1
+access_hr_employee_behavior_user,hr_employee_behavior group_user,model_hr_employee_behavior,hr.group_hr_user,1,1,1,1
+access_hr_behavior_type_user,hr_behavior_type group_user,model_hr_behavior_type,hr.group_hr_user,1,1,1,1
+access_hr_job_base_user,hr_job group_base_user,hr.model_hr_job,base.group_user,1,1,1,1
+access_hr_job_group_portal,hr_job group_portal,hr.model_hr_job,base.group_portal,1,1,1,1
+access_hr_job_group_public,hr_job group_public,hr.model_hr_job,base.group_public,1,1,1,1

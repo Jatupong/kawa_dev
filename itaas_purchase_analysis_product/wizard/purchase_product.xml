@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="view_wizard_purchase_product_report" model="ir.ui.view">
+		<field name="name">Purchase by product report</field>
+		<field name="model">wizard.purchase.product.report</field>
+		<field name="arch" type="xml">
+			<form>
+				<group>
+					<group>
+						<field name="date_from" required="1"/>
+						<field name="date_to" required="1"/>
+					</group>
+					<group>
+						<field name="partner_ids" widget="many2many_tags"/>
+						<field name="categ_ids" widget="many2many_tags"/>
+						<field name="product_ids" widget="many2many_tags"/>
+					</group>
+				</group>
+				<footer>
+					<button name="print_excel_report" string="Print(XLS)" type="object" class="oe_highlight"/>
+					<button string="Cancel" class="oe_link" special="cancel"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_wizard_purchase_product_report" model="ir.actions.act_window">
+		<field name="name">Purchase by product report</field>
+		<field name="res_model">wizard.purchase.product.report</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="view_wizard_purchase_product_report"/>
+		<field name="target">new</field>
+	</record>
+
+	<menuitem id="menu_purchase_product_report"
+			  name="Purchase by product report"
+			  parent="itaas_analysis_report.menu_purchase_analysis_report"
+			  sequence="2"
+			  action="action_wizard_purchase_product_report"/>
+
+</odoo>
+
+
+
