@@ -11,7 +11,7 @@
 
                         <div class="row mb8">
                             <div class="col-6">
-                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo" style="width: 120px;max-height:120px;"/>
                             </div>
                             <div class="col-6 text-end mb4">
                                 <div class="mt0 h4" t-field="company.report_header"/>
@@ -118,7 +118,7 @@
                                 <th name="th_discount" t-if="display_discount" class="text-end" groups="product.group_discount_per_so_line">
                                     <span>Disc.%</span>
                                 </th>
-                                <th name="th_taxes" class="text-end">Taxes</th>
+                                <!--<th name="th_taxes" class="text-end">Taxes</th>-->
                                 <th name="th_subtotal" class="text-end">
                                     <span groups="account.group_show_line_subtotals_tax_excluded">Amount</span>
                                     <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>
@@ -139,7 +139,7 @@
                                         <td name="td_name">
                                             <span t-field="line.name"/>
                                         </td>
-                                        <td name="td_packaging">
+                                        <td name="td_packaging" class="text-end">
                                             <span t-field="line.product_packaging_id"/>
                                         </td>
                                         <td name="td_quantity" class="text-end">
@@ -152,9 +152,9 @@
                                         <td t-if="display_discount" class="text-end" groups="product.group_discount_per_so_line">
                                             <span t-field="line.discount"/>
                                         </td>
-                                        <td name="td_taxes" class="text-end">
-                                            <span t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
-                                        </td>
+                                        <!--<td name="td_taxes" class="text-end">-->
+                                        <!--    <span t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>-->
+                                        <!--</td>-->
                                         <td t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
                                             <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
                                             <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
