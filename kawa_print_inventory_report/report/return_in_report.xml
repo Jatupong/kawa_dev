@@ -172,14 +172,14 @@
                             <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height:150px; max-width:150px;" alt="Logo"/>
                         </div>
                         <br/><br/>
-                        <div class="font_fam font_size_22">
+                        <div class="font_fam" style="font-size:18px;">
                             <B>ใบรับสินค้าคืนเข้าคลัง</B>
                         </div>
 
                     </center>
 
 
-                    <table class="table table-nobordered font_fam font_size_16" style="margin-top:20px;">
+                    <table class="table table-nobordered font_fam font_size_18" style="margin-top:20px;">
                         <tr>
                             <td width="30%">บริษัทผู้นำส่งคืนสินค้า</td>
                             <td width="70%"><span t-field="o.partner_id"/></td>
@@ -206,9 +206,9 @@
 
                     <t t-set="num" t-value="0"/>
 
-                    <table class="table table-bordered-b font_fam font_size_16">
+                    <table class="table-bordered-b font_fam font_size_16">
                         <thead>
-                            <tr>
+                            <tr style="line-height:30px;">
                                 <th width="5%">ลำดับ</th>
                                 <th width="20%">invoice Number</th>
                                 <th width="30%">ชื่อสินค้า/รายละเอียด</th>
@@ -219,10 +219,10 @@
                         </thead>
                         <tbody>
                             <t t-foreach="move_line" t-as="line">
-                                <tr>
+                                <tr style="border-bottom:1px solid black;">
                                     <td align="center">
                                         <t t-set="num" t-value="num+1"/>
-                                        <span t-esc="i_num"/>
+                                        <span t-esc="num"/>
                                     </td>
                                     <td align="center">
                                         <div class="word_wrap">
@@ -251,6 +251,7 @@
                             </t>
                         </tbody>
                     </table>
+                    <br/><br/><br/>
 
                     <div class="row">
                         <table class="font_fam font_size_16 table table-nobordered-f">
@@ -292,6 +293,7 @@
 
             </t>
         </t>
+
     </template>
 
     <record id="paperformat_A4_Five_Margin_kawa_return_in" model="report.paperformat">
