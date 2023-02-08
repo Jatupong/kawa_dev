@@ -210,11 +210,11 @@
                         <thead>
                             <tr style="line-height:30px;">
                                 <th width="5%">ลำดับ</th>
-                                <th width="20%">invoice Number</th>
-                                <th width="30%">ชื่อสินค้า/รายละเอียด</th>
-                                <th width="12%">จำนวน</th>
-                                <th width="15%">ราคาต่อหน่วย</th>
-                                <th width="18%">จำนวนเงินรวม</th>
+                                <th width="17%">invoice Number</th>
+                                <th width="39%">ชื่อสินค้า/รายละเอียด</th>
+                                <th width="9%">จำนวน</th>
+                                <th width="12%">ราคาต่อหน่วย</th>
+                                <th width="15%">จำนวนเงินรวม</th>
                             </tr>
                         </thead>
                         <tbody>
