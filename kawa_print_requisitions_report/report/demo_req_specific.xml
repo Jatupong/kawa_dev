@@ -266,17 +266,17 @@
                         </tbody>
                     </table>
 
-                    <div class="footer">
+<!--                    <div class="footer">-->
                         <table class="table table-nobordered font_fam font_size_16" width="100%" style="border: 1px solid transparent">
 
                             <tr>
                                 <td width="50%">
-                                    <div style="width:100%; height:100px; position:relative;">
+                                    <div style="width:100%; height:60px; position:relative;">
                                     </div>
                                     ผู้อนุมัติ ________________________________________________
                                 </td>
                                 <td width="50%">
-                                    <div style="width:100%; height:100px; position:relative;">
+                                    <div style="width:100%; height:60px; position:relative;">
                                     </div>
                                     ผู้จัดสินค้า ______________________________________________
                                 </td>
@@ -285,19 +285,19 @@
                             </tr>
                             <tr>
                                 <td width="50%">
-                                    <div style="width:100%; height:100px; position:relative;">
+                                    <div style="width:100%; height:60px; position:relative;">
                                     </div>
                                     ผู้ตรวจสอบ ________________________________________
                                 </td>
                                 <td width="50%">
-                                    <div style="width:100%; height:100px; position:relative;">
+                                    <div style="width:100%; height:60px; position:relative;">
                                     </div>
                                     ผู้อนุมัติกรณีตัดจากคลัง ________________________________
                                 </td>
                             </tr>
 
                         </table>
-                    </div>
+<!--                    </div>-->
 
                 </div>
 
