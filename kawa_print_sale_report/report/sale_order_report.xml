@@ -213,10 +213,6 @@
                     <div>
                         <t t-set="order_note" t-value="doc.note"/>
                         <table width="100%" style="border:1px solid white;">
-                            <tr t-if="order_note">
-                                <td width="15%" style="border:1px solid white;"><strong>Remark :</strong></td>
-                                <td width="85%" style="border:1px solid white;"><span t-esc="order_note" class="order_note"/></td>
-                            </tr>
                             <tr t-if="doc.lead_time">
                                 <td style="border:1px solid white;"><strong>Lead time :</strong></td>
                                 <td style="border:1px solid white;"><p t-field="doc.lead_time"/></td>
@@ -229,6 +225,11 @@
                                 <td style="border:1px solid white;"><strong>Fiscal Position :</strong></td>
                                 <td style="border:1px solid white;"><p t-field="doc.fiscal_position_id.sudo().note"/></td>
                             </tr>
+                            <tr t-if="order_note">
+                                <td width="15%" style="border:1px solid white;"><strong>Remark :</strong></td>
+                                <td width="85%" style="border:1px solid white;"><span t-esc="order_note" class="order_note"/></td>
+                            </tr>
+
                         </table>
                     </div>
 
