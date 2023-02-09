@@ -159,12 +159,12 @@
                         <tr>
                             <td width="15%">วันที่</td>
                             <td width="30%"/>
-                            <td width="20%"/>
-                            <td width="10%">วันที่ต้องการตัวอย่าง</td>
-                            <td width="25%"><span t-field="o.scheduled_date"/></td>
+                            <td width="10%"/>
+                            <td width="20%">วันที่ต้องการตัวอย่าง</td>
+                            <td width="30%"><span t-field="o.scheduled_date"/></td>
                         </tr>
                         <tr>
-                            <td>วัตถุประสงค์การใช้งาน</td>
+                            <td width="25%">วัตถุประสงค์การใช้งาน</td>
                             <td>
                                 <table class="table table-nobordered">
                                     <t t-foreach="requisition_type_ids" t-as="req_type">
@@ -181,13 +181,15 @@
                                 </table>
                             </td>
                             <td/>
-                            <td></td>
-                            <td></td>
+                            <td/>
+                            <td/>
+                            <td/>
                         </tr>
                     </table>
+                    <br/>
 
                     <t t-set="i_num" t-value="0"/>
-                    <table class="table table-bordered-b font_fam font_size_16">
+                    <table class="table-bordered-b font_fam font_size_16">
                         <thead>
                             <tr>
                                 <th width="20%" rowspan="2">คลัง</th>
@@ -196,7 +198,7 @@
                                 <th width="15%" rowspan="2">lot.no</th>
                             </tr>
                             <tr>
-                                <th width="5%">ลำดับที่</th>
+                                <th width="7%">ลำดับ</th>
                                 <th width="20%">รายการ</th>
                                 <th width="10%">ลูกค้า</th>
                                 <th width="9%">น้ำหนัก(kgs.)</th>
@@ -232,7 +234,7 @@
                                     <td align="right">
                                         <span t-esc="line.product_id.weight * line.qty_done"/>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <t t-if="line.lot_id">
                                             <span t-field="line.lot_id"/>
                                         </t>
@@ -245,7 +247,7 @@
                         </tbody>
                     </table>
 
-                    <table class="table table-nobordered font_fam font_size_16">
+                    <table class="table table-nobordered font_fam font_size_16" style="position: absolute;top: 850px;">
                         <tr>
                             <td width="50%">
                                 <div style="width:100%; height:100px; position:relative;">
@@ -277,6 +279,7 @@
 
             </t>
         </t>
+
     </template>
 
 </odoo>
