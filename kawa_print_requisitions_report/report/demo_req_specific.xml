@@ -55,7 +55,7 @@
                     padding:0px;
                     }
                     table.table-nobordered &gt; tfoot &gt; tr &gt; td{
-                    border:1px solid white;
+                    border: 1px solid transparent
                     padding:0px;
                     }
 
@@ -75,7 +75,7 @@
                     padding:3px;
                     }
                     table.table-bordered-b &gt; tfoot &gt; tr &gt; td{
-                    border:1px solid black;
+                    border: 1px solid transparent
                     padding:3px;
                     }
 
@@ -96,7 +96,7 @@
                     padding:0px;
                     }
                     table.table-nobordered-b &gt; tfoot &gt; tr &gt; td{
-                    border:1px solid white;
+                    border: 1px solid transparent
                     padding:0px;
                     }
                     .word_wrap{
@@ -144,16 +144,35 @@
                     line-height: 12px;
                     }
                 </style>
+                <t t-set="company" t-value="o.company_id"/>
+                <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+                    <div class="o_boxed_header">
 
-                <div class="header">
-                    <center>
-                        <div class="font_fam font_size_20">
-                            <B>แบบฟอร์มใบเบิกตัวอย่าง</B>
+                        <div class="row mb8">
+                            <div class="col-6">
+                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo" style="width: 140px;max-height:140px;"/>
+                            </div>
+                            <div class="col-6 text-end mb4">
+                                <div class="mt0 h4" t-field="company.report_header"/>
+                                <div name="company_address" class="float-end mb4">
+                                    <span t-if="company.company_details" t-field="company.company_details"/>
+
+                                </div>
+                            </div>
                         </div>
-                    </center>
-                </div>
 
+                    </div>
+                </div>
+                <t/>
+                <br/><br/><br/><br/>
+                <center>
+                    <div class="font_fam font_size_20">
+                        <B>แบบฟอร์มใบเบิกตัวอย่าง</B>
+                    </div>
+                </center>
+                <br/>
                 <div class="page">
+
                     <t t-set="requisition_type_ids" t-value="o.env['material.purchase.requisition.type'].sudo().search([])"/>
                     <table class="table table-nobordered font_fam font_size_16">
                         <tr>
@@ -247,34 +266,39 @@
                         </tbody>
                     </table>
 
-                    <table class="table table-nobordered font_fam font_size_16" style="position: absolute;top: 850px;">
-                        <tr>
-                            <td width="50%">
-                                <div style="width:100%; height:100px; position:relative;">
-                                </div>
-                                ผู้อนุมัติ ________________________________________________
-                            </td>
-                            <td width="50%">
-                                <div style="width:100%; height:100px; position:relative;">
-                                </div>
-                                ผู้จัดสินค้า ______________________________________________
-                            </td>
-                            <td width="30%">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div style="width:100%; height:100px; position:relative;">
-                                </div>
-                                ผู้ตรวจสอบ _____________________________________________________
-                            </td>
-                            <td>
-                                <div style="width:100%; height:100px; position:relative;">
-                                </div>
-                                ผู้อนุมัติกรณีตัดจากคลัง _____________________________________________
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="footer">
+                        <table class="table table-nobordered font_fam font_size_16" width="100%" style="border: 1px solid transparent">
+
+                            <tr>
+                                <td width="50%">
+                                    <div style="width:100%; height:100px; position:relative;">
+                                    </div>
+                                    ผู้อนุมัติ ________________________________________________
+                                </td>
+                                <td width="50%">
+                                    <div style="width:100%; height:100px; position:relative;">
+                                    </div>
+                                    ผู้จัดสินค้า ______________________________________________
+                                </td>
+                                <td width="30%">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%">
+                                    <div style="width:100%; height:100px; position:relative;">
+                                    </div>
+                                    ผู้ตรวจสอบ ________________________________________
+                                </td>
+                                <td width="50%">
+                                    <div style="width:100%; height:100px; position:relative;">
+                                    </div>
+                                    ผู้อนุมัติกรณีตัดจากคลัง ________________________________
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
                 </div>
 
             </t>
