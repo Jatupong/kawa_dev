@@ -355,7 +355,6 @@
                                                 <t t-if="invoice_line_ids[y].name">
                                                     <span t-field="invoice_line_ids[y].name"/>
                                                 </t>
-                                                <t t-foreach="lot_values" t-as="lot">
 
 
                                             </div>
