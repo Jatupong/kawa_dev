@@ -164,9 +164,9 @@
                     </div>
                 </div>
                 <t/>
-                <br/><br/><br/><br/>
+                <br/><br/><br/><br/><br/><br/>
                 <center>
-                    <div class="font_fam font_size_20">
+                    <div class="font_fam font_size_18">
                         <B>แบบฟอร์มใบเบิกตัวอย่าง</B>
                     </div>
                 </center>
@@ -266,38 +266,38 @@
                         </tbody>
                     </table>
 
-<!--                    <div class="footer">-->
-                        <table class="table table-nobordered font_fam font_size_16" width="100%" style="border: 1px solid transparent">
+                    <!--<div class="footer">-->
+                    <table class="table table-nobordered font_fam font_size_16" width="100%" style="border: 1px solid transparent">
 
-                            <tr>
-                                <td width="50%">
-                                    <div style="width:100%; height:60px; position:relative;">
-                                    </div>
-                                    ผู้อนุมัติ ________________________________________________
-                                </td>
-                                <td width="50%">
-                                    <div style="width:100%; height:60px; position:relative;">
-                                    </div>
-                                    ผู้จัดสินค้า ______________________________________________
-                                </td>
-                                <td width="30%">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="50%">
-                                    <div style="width:100%; height:60px; position:relative;">
-                                    </div>
-                                    ผู้ตรวจสอบ ________________________________________
-                                </td>
-                                <td width="50%">
-                                    <div style="width:100%; height:60px; position:relative;">
-                                    </div>
-                                    ผู้อนุมัติกรณีตัดจากคลัง ________________________________
-                                </td>
-                            </tr>
+                        <tr>
+                            <td width="50%">
+                                <div style="width:100%; height:100px; position:relative;">
+                                </div>
+                                ผู้อนุมัติ ________________________________________________
+                            </td>
+                            <td width="50%">
+                                <div style="width:100%; height:100px; position:relative;">
+                                </div>
+                                ผู้จัดสินค้า ______________________________________________
+                            </td>
+                            <td width="30%">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%">
+                                <div style="width:100%; height:100px; position:relative;">
+                                </div>
+                                ผู้ตรวจสอบ ________________________________________
+                            </td>
+                            <td width="50%">
+                                <div style="width:100%; height:100px; position:relative;">
+                                </div>
+                                ผู้อนุมัติกรณีตัดจากคลัง ________________________________
+                            </td>
+                        </tr>
 
-                        </table>
-<!--                    </div>-->
+                    </table>
+                    <!--</div>-->
 
                 </div>
 
